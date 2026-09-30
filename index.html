@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="am" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>አደይ ህትመት | የህትመት አገልግሎት</title>
+
+  <meta name="description"
+        content="አደይ ህትመት - የህትመት፣ ዲዛይን፣ ባነር፣ ቢዝነስ ካርድ እና ሌሎች የህትመት አገልግሎቶች።">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, "Noto Sans Ethiopic", sans-serif;
+      background: #f7f7f7;
+      color: #222;
+      line-height: 1.8;
+    }
+
+    /* NAVIGATION */
+    header {
+      background: #111827;
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,.15);
+    }
+
+    nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #fbbf24;
+      white-space: nowrap;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 22px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: .3s;
+    }
+
+    nav ul li a:hover {
+      color: #fbbf24;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 80vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 50px 20px;
+
+      background:
+        linear-gradient(rgba(0,0,0,.65), rgba(0,0,0,.65)),
+        url("https://images.unsplash.com/photo-1586953208448-b95a79798f07?auto=format&fit=crop&w=1600&q=80");
+
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 70px);
+      margin-bottom: 15px;
+      color: #fbbf24;
+    }
+
+    .hero h2 {
+      font-size: clamp(22px, 4vw, 35px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 8px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: .3s;
+    }
+
+    .btn-primary {
+      background: #fbbf24;
+      color: #111827;
+    }
+
+    .btn-primary:hover {
+      background: #f59e0b;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 2px solid white;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      background: white;
+      color: #111827;
+    }
+
+    /* GENERAL */
+    section {
+      padding: 70px 20px;
+    }
+
+    .container {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-title h2 {
+      font-size: 35px;
+      color: #111827;
+      margin-bottom: 10px;
+    }
+
+    .section-title p {
+      color: #666;
+    }
+
+    /* SERVICES */
+    .services {
+      background: white;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .service-card {
+      background: #f9fafb;
+      padding: 30px 20px;
+      text-align: center;
+      border-radius: 14px;
+      border: 1px solid #eee;
+      transition: .3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .service-icon {
+      font-size: 45px;
+      margin-bottom: 10px;
+    }
+
+    .service-card h3 {
+      margin-bottom: 8px;
+      color: #111827;
+    }
+
+    .service-card p {
+      color: #666;
+    }
+
+    /* ABOUT */
+    .about {
+      background: #f3f4f6;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .about-box {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+    }
+
+    .about-box h3 {
+      color: #111827;
+      margin-bottom: 15px;
+    }
+
+    /* GALLERY */
+    .gallery {
+      background: white;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .gallery-item {
+      height: 230px;
+      overflow: hidden;
+      border-radius: 12px;
+      background: #ddd;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: .4s;
+    }
+
+    .gallery-item img:hover {
+      transform: scale(1.08);
+    }
+
+    /* CONTACT */
+    .contact {
+      background: #111827;
+      color: white;
+    }
+
+    .contact .section-title h2 {
+      color: white;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .contact-card {
+      text-align: center;
+      padding: 25px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 12px;
+    }
+
+    .contact-card .icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    .contact-card a {
+      color: #fbbf24;
+      text-decoration: none;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #030712;
+      color: #aaa;
+      text-align: center;
+      padding: 25px 15px;
+    }
+
+    footer strong {
+      color: #fbbf24;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+
+      nav {
+        flex-direction: column;
+      }
+
+      nav ul {
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      nav ul li a {
+        font-size: 14px;
+      }
+
+      .service-grid,
+      .gallery-grid,
+      .contact-grid,
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 75vh;
+      }
+
+      section {
+        padding: 50px 15px;
+      }
+
+      .section-title h2 {
+        font-size: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <header>
+    <nav>
+      <div class="logo">🌼 አደይ ህትመት</div>
+
+      <ul>
+        <li><a href="#home">መነሻ</a></li>
+        <li><a href="#services">አገልግሎቶች</a></li>
+        <li><a href="#gallery">ስራዎች</a></li>
+        <li><a href="#about">ስለ እኛ</a></li>
+        <li><a href="#contact">ያግኙን</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+
+    <div class="hero-content">
+
+      <h1>አደይ ህትመት</h1>
+
+      <h2>ጥራት ያለው ህትመት፣ የሚያምር ዲዛይን</h2>
+
+      <p>
+        ለግልም ሆነ ለድርጅትዎ የሚያስፈልጉ
+        የህትመት እና የዲዛይን አገልግሎቶች።
+      </p>
+
+      <div class="buttons">
+        <a href="#services" class="btn btn-primary">
+          አገልግሎቶቻችን
+        </a>
+
+        <a href="#contact" class="btn btn-secondary">
+          ያግኙን
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>የምንሰጣቸው አገልግሎቶች</h2>
+        <p>ለፍላጎትዎ የሚመች የህትመት አገልግሎት</p>
+      </div>
+
+      <div class="service-grid">
+
+        <div class="service-card">
+          <div class="service-icon">🖨️</div>
+          <h3>የሰነድ ህትመት</h3>
+          <p>
+            ሰነዶች፣ ሪፖርቶች፣ ፎርሞች እና ሌሎች የህትመት ስራዎች።
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💳</div>
+          <h3>ቢዝነስ ካርድ</h3>
+          <p>
+            ለንግድዎ የሚመጥን ሙያዊ የቢዝነስ ካርድ ዲዛይንና ህትመት።
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📢</div>
+          <h3>ባነር እና ማስታወቂያ</h3>
+          <p>
+            ባነር፣ ፖስተር እና የማስታወቂያ ህትመት።
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📸</div>
+          <h3>ፎቶ ህትመት</h3>
+          <p>
+            የግል ፎቶዎች እና ሌሎች የፎቶ ህትመት አገልግሎቶች።
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>ግራፊክ ዲዛይን</h3>
+          <p>
+            Logo፣ Flyer፣ Poster እና ሌሎች የግራፊክ ዲዛይኖች።
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📚</div>
+          <h3>መጽሐፍ እና ብሮሹር</h3>
+          <p>
+            መጽሐፍ፣ ብሮሹር፣ የማስታወቂያ ቁሳቁሶች ህትመት።
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>የስራ ማሳያ</h2>
+        <p>ከተሰሩ የህትመት ስራዎቻችን አንዳንዶቹ</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=900&q=80"
+            alt="የህትመት ስራ">
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=80"
+            alt="የዲዛይን ስራ">
+        </div>
+
+        <div class="gallery-item">
+          <img
+            src="https://images.unsplash.com/photo-1586075010923-2dd4570fb338?auto=format&fit=crop&w=900&q=80"
+            alt="የቢዝነስ ካርድ ስራ">
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>ስለ አደይ ህትመት</h2>
+      </div>
+
+      <div class="about-content">
+
+        <div class="about-box">
+          <h3>ራዕያችን</h3>
+
+          <p>
+            በጥራት፣ በፍጥነት እና በደንበኛ እርካታ
+            የሚታወቅ የህትመት አገልግሎት መስጠት።
+          </p>
+        </div>
+
+        <div class="about-box">
+          <h3>ለምን አደይ ህትመት?</h3>
+
+          <p>
+            ጥራት ያለው ስራ፣ ተመጣጣኝ ዋጋ፣
+            ፈጣን አገልግሎት እና ለደንበኛ ፍላጎት
+            ትኩረት እንሰጣለን።
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+
+    <div class="container">
+
+      <div class="section-title">
+        <h2>ያግኙን</h2>
+        <p>ለተጨማሪ መረጃ ያግኙን</p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-card">
+          <div class="icon">📞</div>
+          <h3>ስልክ</h3>
+          <p>
+            <a href="tel:+251900000000">
+              +251 900 000 000
+            </a>
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon">💬</div>
+          <h3>WhatsApp</h3>
+          <p>
+            <a href="https://wa.me/251900000000">
+              በWhatsApp ያነጋግሩን
+            </a>
+          </p>
+        </div>
+
+        <div class="contact-card">
+          <div class="icon">📍</div>
+          <h3>አድራሻ</h3>
+          <p>
+            አድራሻዎን እዚህ ያስገቡ
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 <strong>አደይ ህትመት</strong>.
+      መብቱ በህግ የተጠበቀ ነው።
+    </p>
+
+  </footer>
+
+</body>
+</html>
